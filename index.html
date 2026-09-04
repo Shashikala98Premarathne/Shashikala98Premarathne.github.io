@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Your Full Name] — Data Scientist / Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF7F2;
+    --paper-dim:#F1ECE3;
+    --ink:#1A2233;
+    --ink-soft:#3A4356;
+    --steel:#3D5A73;
+    --steel-light:#EDF2F6;
+    --amber:#C9924B;
+    --slate:#6B7280;
+    --line:#DDD6C8;
+    --serif: 'IBM Plex Serif', Georgia, serif;
+    --sans: 'IBM Plex Sans', -apple-system, sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--steel); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--steel); outline-offset:3px;}
+
+  .wrap{max-width:760px; margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,247,242,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:760px; margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-name{font-family:var(--serif); font-size:17px; font-weight:600; color:var(--ink);}
+  .nav-links{display:flex; gap:26px; align-items:center;}
+  .nav-links a{color:var(--ink-soft); font-size:14px; font-weight:500; margin-right:26px;}
+  .nav-links a:last-child{margin-right:0;}
+  .nav-links a:hover{color:var(--steel); text-decoration:none;}
+  .nav-cta{
+    border:1px solid var(--ink); padding:7px 14px; border-radius:2px;
+    color:var(--ink) !important; font-size:13.5px;
+  }
+  .nav-cta:hover{background:var(--ink); color:var(--paper) !important; text-decoration:none;}
+  .nav-toggle{display:none; background:none; border:none; font-size:22px; color:var(--ink); cursor:pointer;}
+
+  @media (max-width:640px){
+    .nav-links{
+      position:fixed; top:60px; left:0; right:0; background:var(--paper);
+      flex-direction:column; align-items:flex-start; gap:0;
+      border-bottom:1px solid var(--line);
+      max-height:0; overflow:hidden; transition:max-height .25s ease;
+    }
+    .nav-links.open{max-height:320px;}
+    .nav-links a{padding:14px 28px; width:100%; border-bottom:1px solid var(--line);}
+    .nav-toggle{display:block;}
+  }
+
+  /* HERO */
+  .hero{padding:76px 0 54px; opacity:0; transform:translateY(14px); animation:rise .7s ease forwards;}
+  @keyframes rise{to{opacity:1; transform:translateY(0);}}
+  .hero-kicker{
+    font-family:var(--mono); font-size:13px; color:var(--steel);
+    display:flex; align-items:center; gap:8px; margin-bottom:18px;
+  }
+  .signal{display:inline-flex; align-items:flex-end; gap:2px; height:12px;}
+  .signal span{width:3px; background:var(--amber); display:block;}
+  .hero h1{
+    font-family:var(--serif); font-weight:600;
+    font-size:clamp(34px,5vw,46px); line-height:1.15; color:var(--ink);
+    max-width:13ch;
+  }
+  .hero p.role{
+    font-family:var(--serif); font-style:italic; font-weight:400;
+    font-size:19px; color:var(--ink-soft); margin-top:10px;
+  }
+  .hero p.tagline{
+    margin-top:20px; max-width:56ch; color:var(--ink-soft); font-size:16.5px;
+  }
+  .hero-meta{margin-top:22px; color:var(--slate); font-size:14.5px;}
+  .hero-links{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px;}
+  .hero-links a{
+    font-size:13.5px; padding:8px 14px; border:1px solid var(--line);
+    border-radius:2px; color:var(--ink-soft); background:var(--paper-dim);
+  }
+  .hero-links a:hover{border-color:var(--steel); color:var(--steel); text-decoration:none;}
+  .hero-links a.primary{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .hero-links a.primary:hover{background:var(--ink-soft);}
+
+  /* SECTION generic */
+  section{padding:52px 0; border-top:1px solid var(--line);}
+  .section-head{
+    display:flex; align-items:baseline; gap:14px; margin-bottom:26px;
+  }
+  .section-num{font-family:var(--mono); font-size:13px; color:var(--amber);}
+  h2{font-family:var(--serif); font-weight:600; font-size:24px; color:var(--ink);}
+
+  /* ABOUT */
+  #about p{max-width:62ch; color:var(--ink-soft); font-size:16px;}
+  .stats{display:flex; gap:36px; margin-top:30px; flex-wrap:wrap;}
+  .stat b{font-family:var(--serif); font-size:26px; color:var(--ink); display:block;}
+  .stat span{font-size:13px; color:var(--slate);}
+
+  /* SKILLS */
+  .skill-row{
+    display:grid; grid-template-columns:180px 1fr; gap:18px;
+    padding:12px 0; border-bottom:1px solid var(--line);
+    font-size:14.5px;
+  }
+  .skill-row:last-child{border-bottom:none;}
+  .skill-cat{color:var(--ink); font-weight:600;}
+  .skill-list{color:var(--ink-soft);}
+  @media (max-width:560px){
+    .skill-row{grid-template-columns:1fr; gap:4px;}
+  }
+
+  /* PROJECTS */
+  .project{padding:26px 0; border-bottom:1px solid var(--line);}
+  .project:last-child{border-bottom:none;}
+  .project-top{display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap;}
+  .project h3{font-family:var(--serif); font-size:19px; font-weight:600; color:var(--ink);}
+  .project-links{display:flex; gap:14px; font-size:13.5px; white-space:nowrap;}
+  .project-stack{
+    font-family:var(--mono); font-size:12.5px; color:var(--steel);
+    margin-top:6px; letter-spacing:0.2px;
+  }
+  .project p.desc{margin-top:10px; color:var(--ink-soft); font-size:15px; max-width:62ch;}
+
+  /* EXPERIENCE */
+  .job{display:grid; grid-template-columns:130px 1fr; gap:18px; padding:16px 0; border-bottom:1px solid var(--line);}
+  .job:last-child{border-bottom:none;}
+  .job-date{font-family:var(--mono); font-size:12.5px; color:var(--slate); padding-top:3px;}
+  .job-title{font-weight:600; color:var(--ink); font-size:15.5px;}
+  .job-org{color:var(--steel); font-size:14px; margin-top:2px;}
+  @media (max-width:560px){
+    .job{grid-template-columns:1fr; gap:4px;}
+  }
+
+  /* CONTACT / FOOTER */
+  footer{padding:60px 0 70px;}
+  footer h2{margin-bottom:12px;}
+  footer p{color:var(--ink-soft); max-width:52ch; margin-bottom:26px;}
+  .contact-links{display:flex; flex-wrap:wrap; gap:12px;}
+  .contact-links a{
+    font-size:14px; padding:10px 16px; border:1px solid var(--ink);
+    border-radius:2px; color:var(--ink);
+  }
+  .contact-links a:hover{background:var(--ink); color:var(--paper); text-decoration:none;}
+  .fine-print{margin-top:50px; color:var(--slate); font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-name">[Your Full Name]</div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" style="border-top:none;">
+    <div class="hero-kicker">
+      <span class="signal"><span style="height:4px"></span><span style="height:8px"></span><span style="height:6px"></span><span style="height:12px"></span></span>
+      Data Scientist / Analyst — based in Germany
+    </div>
+    <h1>[Your Full Name]</h1>
+    <p class="role">Turning complex datasets into decisions that hold up.</p>
+    <p class="tagline">I build automated data pipelines, predictive models, and BI dashboards that convert messy, real-world data into measurable business impact — across market research, manufacturing, and public-sector research.</p>
+    <p class="hero-meta">📍 [City], Germany · Open to Data Science &amp; Data Analyst roles</p>
+    <div class="hero-links">
+      <a href="#" class="primary">Download CV ↓</a>
+      <a href="#projects">View projects</a>
+      <a href="https://github.com/Shashikala98Premarathne" target="_blank" rel="noopener">GitHub</a>
+      <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#" target="_blank" rel="noopener">LeetCode</a>
+      <a href="#" target="_blank" rel="noopener">HackerRank</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head"><span class="section-num">01</span><h2>About</h2></div>
+    <p>I'm a Data Scientist with 3+ years of experience spanning data science, business analytics, and BI — including 1+ year building production ML pipelines and automation tools in Germany's market research industry, and two years in operations analytics within a LEAN manufacturing environment in Sri Lanka.</p>
+    <p style="margin-top:14px;">I hold an M.Sc. in Business Intelligence &amp; Process Management from HWR Berlin, where my thesis explored automating public-sector processes using Large Language Models. I care about building tools that don't just analyze data — they save people time and improve the decisions that follow.</p>
+    <div class="stats">
+      <div class="stat"><b>3+ yrs</b><span>professional experience</span></div>
+      <div class="stat"><b>5</b><span>featured projects</span></div>
+      <div class="stat"><b>1M+</b><span>records processed in production</span></div>
+      <div class="stat"><b>1</b><span>publication under review</span></div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head"><span class="section-num">02</span><h2>Skills</h2></div>
+    <div class="skill-row">
+      <div class="skill-cat">Programming &amp; Data</div>
+      <div class="skill-list">Python · SQL · Pandas · NumPy · PostgreSQL · DAX</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-cat">Machine Learning &amp; AI</div>
+      <div class="skill-list">Scikit-learn · XGBoost · T5 · Sentence-Transformers · LLMs · Feature Engineering</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-cat">BI &amp; Visualization</div>
+      <div class="skill-list">Power BI · Tableau · Matplotlib · Plotly · Streamlit</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-cat">Tools &amp; Platforms</div>
+      <div class="skill-list">Git · Jira · DBeaver · Disco (Process Mining) · SAP · Apache Hop</div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head"><span class="section-num">03</span><h2>Featured Projects</h2></div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Hospital Appointment No-Show Prediction</h3>
+        <div class="project-links"><a href="#" target="_blank">GitHub</a></div>
+      </div>
+      <div class="project-stack">Python · Pandas · Scikit-learn · XGBoost · Tableau</div>
+      <p class="desc">Built a classification model on ~17,700 patient records to predict appointment no-shows, identifying key behavioral and scheduling drivers through exploratory analysis and feature engineering.</p>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Government Process Automation using LLMs</h3>
+        <div class="project-links"><a href="#" target="_blank">GitHub</a></div>
+      </div>
+      <div class="project-stack">Python · T5 · Abstractive Summarization · Keyword Search</div>
+      <p class="desc">Designed an AI-assisted summarization workflow using a fine-tuned T5 model, combining keyword search with an optimized document-filtering threshold — completed as part of my Master's thesis.</p>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Citation Analysis</h3>
+        <div class="project-links"><a href="#" target="_blank">GitHub</a> <a href="#" target="_blank">Live app</a></div>
+      </div>
+      <div class="project-stack">Python · Sentence-Transformers · Streamlit · Plotly · NetworkX</div>
+      <p class="desc">An interactive tool exploring semantic relationships across 14,600+ computer science papers using sentence embeddings and cosine similarity, visualized through 3D/2D network graphs.</p>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Shopvisor</h3>
+        <div class="project-links"><a href="#" target="_blank">GitHub</a></div>
+      </div>
+      <div class="project-stack">Python · Streamlit · Web Scraping</div>
+      <p class="desc">A prototype grocery price-comparison web app for the German market, scraping and comparing prices across two supermarkets to recommend the most affordable options to users.</p>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Procurement Data Mart</h3>
+        <div class="project-links"><a href="#" target="_blank">GitHub</a></div>
+      </div>
+      <div class="project-stack">Python · SQL · PostgreSQL · ETL · Disco · Tableau</div>
+      <p class="desc">End-to-end BI project — from requirements gathering and multidimensional data modeling to ETL and dashboarding — plus process mining to identify workflow bottlenecks and cost-saving opportunities.</p>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-head"><span class="section-num">04</span><h2>Experience</h2></div>
+    <div class="job">
+      <div class="job-date">2025 — 2026</div>
+      <div>
+        <div class="job-title">Data Scientist</div>
+        <div class="job-org">AMR Advanced Market Research, Germany</div>
+      </div>
+    </div>
+    <div class="job">
+      <div class="job-date">2022 — 2023</div>
+      <div>
+        <div class="job-title">Business Analyst</div>
+        <div class="job-org">Fabrics Matrix, Sri Lanka</div>
+      </div>
+    </div>
+    <div class="job">
+      <div class="job-date">2021 — 2022</div>
+      <div>
+        <div class="job-title">HR Analytics Intern</div>
+        <div class="job-org">Fabrics Matrix, Sri Lanka</div>
+      </div>
+    </div>
+    <p style="margin-top:20px;"><a href="#">See full CV for details →</a></p>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <h2 id="contact" style="font-family:var(--serif); font-size:24px;">Let's talk</h2>
+  <p>I'm currently exploring new opportunities in Data Science and Data Analytics. Feel free to reach out — I'd be glad to hear from you.</p>
+  <div class="contact-links">
+    <a href="mailto:you@example.com">Email</a>
+    <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/Shashikala98Premarathne" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <p class="fine-print">© [Year] [Your Full Name]. Built with care in Germany.</p>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+</script>
+
+</body>
+</html>
